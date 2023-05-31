@@ -143,8 +143,8 @@ header h1 {
     text-align: center;
 }
 .alerta.error {
-    background-color: #b91c1c;
-    border-left: 5px solid #b91c1c;
+    background-color: #f54c4c;
+    border-left: 5px solid #ffffff;
     color: var(--blanco);
 }
 .alerta.success {
