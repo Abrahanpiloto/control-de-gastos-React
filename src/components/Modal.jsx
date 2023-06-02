@@ -99,7 +99,7 @@ const Modal = ({
             <option value="ocio">Ocio</option>
             <option value="salud">Salud</option>
             <option value="suscripciones">Suscripciones</option>
-            <option value="transporte">Transporte o Vehiculo</option>
+            <option value="transporte o vehiculo">Transporte o Vehiculo</option>
           </select>
         </div>
 

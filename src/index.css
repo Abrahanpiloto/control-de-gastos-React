@@ -45,7 +45,12 @@ h2 {
 }
 
 header {
-    background-color: var(--negro);
+   /* background-color: var(--negro);*/
+   background: #0F2027;  /* fallback for old browsers */
+   background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+   background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+   
+
 }
 
 header h1 {
@@ -278,7 +283,7 @@ main {
 }
 
 .cantidad-gasto {
-    font-size: 2.4rem;
+    font-size: 2rem;
     color: var(--negro);
     font-weight: 900;
 }
@@ -297,25 +302,27 @@ main {
     margin: 0 0 0.3rem 0;
 }
 .descripcion-gasto .categoria {
-    color: var(--gris);
-    font-size: 1.6rem;
+    color: var(--azul);
+    font-size: 2.1rem;
     font-weight: 900;
     text-transform: uppercase;
+    
 }
 .descripcion-gasto p {
     margin-bottom: 1rem;
 }
 .descripcion-gasto .nombre-gasto {
     color: var(--gris-oscuro);
-    font-size: 2.4rem;
-    font-weight: 700;
+    font-size: 1.6rem;
+    font-weight: 800;
+    text-transform: capitalize;
 }
 .descripcion-gasto .nombre-gasto:hover {
     cursor: pointer;
 }
 .descripcion-gasto .fecha-gasto {
-    font-size: 1.8rem;
-    font-weight: 900;
+    font-size: 1.6rem;
+    font-weight: 700;
     color: var(--gris-oscuro);
 }
 .descripcion-gasto .fecha-gasto span {
