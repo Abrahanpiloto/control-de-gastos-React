@@ -7,11 +7,8 @@ const ControlPresupuesto = ({gastos, presupuesto}) => {
 
   useEffect(() => {
     const totalGastado = gastos.reduce((total, gasto) => gasto.cantidad + total, 0);
-    console.log(totalGastado);
     
     const totalDisponible = presupuesto - totalGastado;
-    console.log(totalDisponible)
-    
    
     setGastado(totalGastado);
     setDisponible(totalDisponible);
@@ -23,8 +20,6 @@ const ControlPresupuesto = ({gastos, presupuesto}) => {
       currency: 'USD'})
   }
 
-  
- 
   return (
     <div className='contenedor-presupuesto contenedor sombra    dos-columnas'>
       <div>
