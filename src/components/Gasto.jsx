@@ -29,13 +29,13 @@ const diccionarioIconos = {
   "transporte o vehiculo": IconoGastos
 }
 
-const Gasto = ({gasto}) => {
+const Gasto = ({gasto, setGastoEditar, eliminarGasto}) => {
   const {categoria, nombre, cantidad, id, fecha} = gasto;
   
   const leadingActions = () => {
     return (
     <LeadingActions>
-      <SwipeAction onClick={() => console.log("editar...")}>
+      <SwipeAction onClick={() => setGastoEditar(gasto)}>
         Editar
       </SwipeAction>
     </LeadingActions>
@@ -44,7 +44,10 @@ const Gasto = ({gasto}) => {
 
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction onClick={() => console.log("eliminar")}>
+      <SwipeAction 
+      onClick={() => eliminarGasto(id)}
+      destructive={true}
+      >
         Eliminar
       </SwipeAction>
     </TrailingActions>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import Modal from './components/Modal'
 import ListadoGastos from './components/ListadoGastos'
@@ -15,8 +15,23 @@ function App() {
   const [modal, setModal] = useState(false);
   const [animarModal, setAnimarModal] = useState(false);
 
+  const [gastoEditar, setGastoEditar] = useState({});
+
+  useEffect(() => {
+   
+    if(Object.keys(gastoEditar).length > 0) {
+      setModal(true)
+      
+      setTimeout(() => {
+        setAnimarModal(true)
+      }, 400);
+    }
+  }, [gastoEditar])
+  
+
   const handleNuevoGasto = () => {
     setModal(true)
+    setGastoEditar({})
     
     setTimeout(() => {
       setAnimarModal(true)
@@ -24,23 +39,38 @@ function App() {
   }
 
   //funcion que guarda un gasto:
-  const guardarGasto = (gasto) => {
-    gasto.fecha = Date.now();
-    gasto.id = generarId();
-    setGastos([...gastos, gasto])
+  const guardarGasto = gasto => {
+    console.log(gasto)
+    if(gasto.id) {
+      //Actualiza un gasto
+      const gastosActualizados = gastos.map( gastoState => gastoState.id === gasto.id ? gasto : gastoState)
+      
+      setGastos(gastosActualizados)
+    } else {
+      //Guarda un nuevo gasto
+      gasto.id = generarId();
+      gasto.fecha = Date.now();
+      setGastos([...gastos, gasto])
+    }
 
     setAnimarModal(false)
 
     setTimeout(() => {
       setModal(false)
     }, 500);
+    setGastoEditar({})
+  }
+
+  const eliminarGasto = id => {
+    // console.log("eliminando", id)
+    const gastosActualizados = gastos.filter( gasto => gasto.id !== id);
+    setGastos(gastosActualizados)
   }
 
   return (
     <div className={modal ? "fijar" : ""}>
       
       <Header 
-        
         presupuesto={presupuesto}
         setPresupuesto={setPresupuesto}
         isValidPresupuesto={isValidPresupuesto} 
@@ -53,6 +83,8 @@ function App() {
           <main>
             <ListadoGastos 
               gastos={gastos}
+              setGastoEditar={setGastoEditar}
+              eliminarGasto={eliminarGasto}
             />
           </main>
           <div className='nuevo-gasto'>
@@ -71,6 +103,8 @@ function App() {
                   animarModal={animarModal}
                   setAnimarModal={setAnimarModal}
                   guardarGasto={guardarGasto}
+                  gastoEditar={gastoEditar}
+                  setGastoEditar={setGastoEditar}
                 />}
       
     </div>
