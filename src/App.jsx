@@ -10,7 +10,7 @@ function App() {
   const [gastos, setGastos] = useState([]);
 
   const [presupuesto, setPresupuesto] = useState(
-    Number(localStorage.getItem("presupuesto")) ?? ""
+    Number(localStorage.getItem("presupuesto")) ?? 0
   );
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false);
 
@@ -31,7 +31,7 @@ function App() {
   }, [gastoEditar])
 
   useEffect(() => {
-    localStorage.setItem("presupuesto", presupuesto ?? "")
+    localStorage.setItem("presupuesto", presupuesto ?? 0)
   }, [presupuesto])
 
   useEffect(() => {

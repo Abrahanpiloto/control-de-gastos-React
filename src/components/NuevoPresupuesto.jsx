@@ -38,8 +38,7 @@ const NuevoPresupuesto = ({
             type="number"
             placeholder="Añade tu Presupuesto"
             value={presupuesto}
-            onChange={ e => setPresupuesto(Number(e.target.value))}
-          
+            onChange={ e => setPresupuesto(parseInt(e.target.value))}
           />
         </div>
         <input 
