@@ -18,7 +18,7 @@ const ControlPresupuesto = ({gastos, presupuesto}) => {
    
     setTimeout(() => {
       setPorcentaje(nuevoPorcentaje);
-    }, 1500);
+    }, 1300);
     
     setGastado(totalGastado);
     setDisponible(totalDisponible);
