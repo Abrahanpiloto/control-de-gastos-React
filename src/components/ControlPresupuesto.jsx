@@ -2,7 +2,13 @@ import {useState, useEffect} from "react";
 import {CircularProgressbar, buildStyles} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-const ControlPresupuesto = ({gastos, presupuesto}) => {
+const ControlPresupuesto = ({
+  gastos, 
+  setGastos,
+  presupuesto,
+  setPresupuesto,
+  setIsValidPresupuesto
+}) => {
   
   const [disponible, setDisponible] = useState(0);
   const [gastado, setGastado] = useState(0);
@@ -18,7 +24,7 @@ const ControlPresupuesto = ({gastos, presupuesto}) => {
    
     setTimeout(() => {
       setPorcentaje(nuevoPorcentaje);
-    }, 1300);
+    }, 1200);
     
     setGastado(totalGastado);
     setDisponible(totalDisponible);
@@ -30,6 +36,15 @@ const ControlPresupuesto = ({gastos, presupuesto}) => {
       currency: 'USD'})
   }
 
+  const handleResetApp = () => {
+    const resultado = confirm("¿Estas seguro de resetear presupuesto y gastos?")
+    if(resultado) {
+      setGastos([])
+      setPresupuesto(0)
+      setIsValidPresupuesto(false)
+    } 
+  }
+
   return (
     <div className='contenedor-presupuesto contenedor sombra    dos-columnas'>
       <div>
@@ -38,8 +53,8 @@ const ControlPresupuesto = ({gastos, presupuesto}) => {
           text={`${porcentaje}% Gastado`}
           styles={buildStyles({
             trailColor: "#F5F5F5",
-            pathColor: "#3B82F6",
-            textColor: "#64748B"
+            pathColor: porcentaje > 100 ? "#DC2626" : "#3B82F6",
+            textColor: porcentaje > 100 ? "#DC2626" : "#3B82F6"
 
           })}
         />
@@ -50,13 +65,22 @@ const ControlPresupuesto = ({gastos, presupuesto}) => {
           <span>Presupuesto: </span>{formatearCantidad(presupuesto)}
         </p>
 
-        <p>
+        <p className={`${disponible < 0 ? "negativo" : ""}`}>
           <span>Disponible: </span>{formatearCantidad(disponible)}
         </p>
 
         <p>
           <span>Gastado: </span>{formatearCantidad(gastado)}
         </p>
+
+        <button 
+        className="reset-app"
+        type="button"
+        onClick={handleResetApp}
+        
+        >
+          Resetear App
+        </button>
       </div>
     </div>
   )

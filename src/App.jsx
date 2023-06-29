@@ -8,6 +8,7 @@ import IconoNuevoGasto from './img/nuevo-gasto.svg'
 
 
 function App() {
+  
   const [gastos, setGastos] = useState(
     localStorage.getItem("gastos") ? JSON.parse(localStorage.getItem("gastos")) : []
   );
@@ -97,7 +98,7 @@ function App() {
   }
 
   const eliminarGasto = id => {
-    // console.log("eliminando", id)
+    
     const gastosActualizados = gastos.filter( gasto => gasto.id !== id);
     setGastos(gastosActualizados)
   }
@@ -111,6 +112,7 @@ function App() {
         isValidPresupuesto={isValidPresupuesto} 
         setIsValidPresupuesto={setIsValidPresupuesto}
         gastos={gastos}
+        setGastos={setGastos}
       />
 
       {isValidPresupuesto && (
